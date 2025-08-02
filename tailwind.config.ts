@@ -1,22 +1,10 @@
 import { defineConfig } from "tailwindcss"
-import defaultConfig from "shadcn/ui/tailwind.config" // สำคัญมาก: นำเข้าค่าเริ่มต้นของ shadcn/ui
 
 export default defineConfig({
-  // รวมค่าเริ่มต้นของ shadcn/ui เข้ากับการตั้งค่าของคุณ
-  ...defaultConfig,
-  content: [
-    // ตรวจสอบให้แน่ใจว่าพาธเหล่านี้ครอบคลุมไฟล์ทั้งหมดที่ใช้ Tailwind CSS
-    "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./lib/**/*.{ts,tsx}", // เพิ่ม lib เพื่อความสมบูรณ์
-    // หากมีไฟล์อื่นๆ ที่ใช้คลาส Tailwind ให้เพิ่มที่นี่
-  ],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}", "*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
-      // เก็บสีเริ่มต้นของ shadcn/ui ไว้
-      ...defaultConfig.theme.extend,
       colors: {
-        ...defaultConfig.theme.extend.colors, // กระจายสีเริ่มต้นของ shadcn/ui
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -72,8 +60,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [
-    ...defaultConfig.plugins, // กระจายปลั๊กอินเริ่มต้นของ shadcn/ui
-    require("tailwindcss-animate"),
-  ],
+  plugins: [require("tailwindcss-animate")],
 })
